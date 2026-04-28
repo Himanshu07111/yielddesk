@@ -39,29 +39,7 @@
 - Node.js 18+
 - MongoDB
 
-### Installation
 
-```bash
-# Clone
-git clone https://github.com/yourusername/yielddesk.git
-cd yielddesk
-
-# Backend
-cd backend
-pip install -r requirements.txt
-# Create .env with:
-#   MONGO_URL="mongodb://localhost:27017"
-#   DB_NAME="yielddesk"
-#   FRED_API_KEY="your_fred_api_key"
-uvicorn server:app --reload --port 8001
-
-# Frontend (new terminal)
-cd frontend
-yarn install
-# Create .env with:
-#   REACT_APP_BACKEND_URL=http://localhost:8001
-yarn start
-```
 
 ### Environment Variables
 
