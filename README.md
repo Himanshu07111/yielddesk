@@ -15,7 +15,7 @@
 - **CSV Export** — Download filtered bond data with one click
 - **Bond Detail Modal** — Click any row for full bond analysis with sparkline chart and auto-generated insight pills
 - **Live Market Clock** — Real-time EST clock in the navbar
-- **16/16 Tests Passing** — Full backend API test coverage
+
 
 ---
 
@@ -69,3 +69,4 @@
 ---
 
 Built by **Himanshu Sehrawat** · [LinkedIn](https://linkedin.com/in/himanshusehrawat)
+
