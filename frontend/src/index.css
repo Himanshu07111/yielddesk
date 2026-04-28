@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+    :root {
+        --background: 225 44% 7%;
+        --foreground: 0 0% 100%;
+        --card: 227 34% 15%;
+        --card-foreground: 0 0% 100%;
+        --popover: 227 34% 15%;
+        --popover-foreground: 0 0% 100%;
+        --primary: 39 100% 50%;
+        --primary-foreground: 0 0% 0%;
+        --secondary: 225 40% 12%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 225 40% 12%;
+        --muted-foreground: 220 10% 60%;
+        --accent: 225 30% 18%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 355 100% 64%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 222 36% 18%;
+        --input: 222 36% 18%;
+        --ring: 39 100% 50%;
+        --radius: 0rem;
+        --chart-1: 39 100% 50%;
+        --chart-2: 165 100% 42%;
+        --chart-3: 355 100% 64%;
+        --chart-4: 195 100% 50%;
+        --chart-5: 280 65% 60%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0e1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e2a40;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2a3654;
+}
+
+/* Font utility classes */
+.font-mono {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* ApexCharts dark overrides */
+.apexcharts-tooltip {
+    background: #1a2035 !important;
+    border: 1px solid #1e2a40 !important;
+    color: #FFFFFF !important;
+}
+
+.apexcharts-tooltip-title {
+    background: #1a2035 !important;
+    border-bottom: 1px solid #1e2a40 !important;
+}
+
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
+    background: #1a2035 !important;
+    border: 1px solid #1e2a40 !important;
+    color: #A1A1AA !important;
+}

@@ -1,0 +1,125 @@
+{
+  "project": "YieldDesk",
+  "theme": "dark",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) + Retro-Futurism/Terminal",
+  "typography": {
+    "primary": "IBM Plex Sans, sans-serif",
+    "mono": "JetBrains Mono, monospace",
+    "headings": {
+      "family": "IBM Plex Sans",
+      "weight": "font-bold",
+      "tracking": "tracking-tight",
+      "transform": "uppercase"
+    },
+    "body": {
+      "family": "IBM Plex Sans",
+      "size": "text-sm",
+      "color": "text-zinc-200"
+    },
+    "data": {
+      "family": "JetBrains Mono",
+      "size": "text-[13px]",
+      "weight": "font-medium"
+    }
+  },
+  "color_palette": {
+    "background": {
+      "base": "#000000",
+      "surface": "#0C0C0C",
+      "panel": "#141414"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A"
+    },
+    "signals": {
+      "positive": "#00FF00",
+      "negative": "#FF0000",
+      "warning": "#FFA500",
+      "accent": "#00BFFF"
+    },
+    "borders": {
+      "default": "#27272A",
+      "focus": "#FFA500"
+    }
+  },
+  "layout_and_spacing": {
+    "strategy": "The 'Control Room' Grid",
+    "density": "High density. Minimize empty whitespace.",
+    "container_padding": "p-4 md:p-6",
+    "gap": "gap-4",
+    "borders": "Expose grid borders. Use 1px solid #27272A to separate panels. Avoid shadows.",
+    "radius": "rounded-none"
+  },
+  "surface_strategy": {
+    "type": "Grid Borders (The 'Technical' Look)",
+    "rules": [
+      "Flat solid backgrounds ONLY.",
+      "No glassmorphism.",
+      "No drop shadows.",
+      "Use inner borders to define sections."
+    ]
+  },
+  "components": {
+    "navigation": {
+      "style": "Fixed top, bg-black, border-b border-zinc-800. Height: 48px to 56px.",
+      "links": "text-sm font-semibold tracking-wide text-zinc-400 hover:text-white. Active link gets a 2px bottom border of #FFA500.",
+      "clock": "text-[#00FF00] font-mono text-sm border border-[#00FF00]/30 bg-[#00FF00]/10 px-2 py-1 rounded-none"
+    },
+    "bond_screener_table": {
+      "header": "text-xs uppercase tracking-wider text-zinc-500 bg-[#0C0C0C]",
+      "rows": "hover:bg-zinc-900 border-b border-zinc-800",
+      "data_cells": "Use JetBrains Mono. Align numbers right. Use #00FF00 for positive yields, #FF0000 for negative.",
+      "tags": "Rating/Type badges should be square, transparent bg with 1px border. e.g., border-blue-500/50 text-blue-400"
+    },
+    "yield_curve_chart": {
+      "library": "ApexCharts",
+      "theme": "dark",
+      "background": "transparent",
+      "grid": "stroke: #27272A, dashed",
+      "line": "color: #FFA500, strokeWidth: 2",
+      "markers": "size: 4, colors: ['#000000'], strokeColors: '#FFA500', strokeWidth: 2"
+    },
+    "filters": {
+      "layout": "Dense horizontal bar above table. gap-3.",
+      "inputs": "bg-[#0C0C0C] border-zinc-800 rounded-none text-sm focus:border-[#FFA500] focus:ring-1 focus:ring-[#FFA500]"
+    },
+    "buttons": {
+      "primary": "bg-zinc-100 text-black hover:bg-white rounded-none font-semibold text-sm",
+      "secondary": "bg-transparent border border-zinc-700 text-white hover:bg-zinc-800 rounded-none",
+      "action": "bg-[#FFA500] text-black hover:bg-[#FFB732] rounded-none font-bold"
+    }
+  },
+  "motion": {
+    "strategy": "Instant Feedback",
+    "rules": [
+      "No entrance animations.",
+      "Hover states must be instantaneous (transition-none or max duration-75).",
+      "Simulate the immediate response of a hardware terminal."
+    ]
+  },
+  "accessibility": {
+    "contrast": "Maintain 4.5:1 ratio for text. Text on pure black is easily accessible.",
+    "testing": "All interactive elements MUST include data-testid (e.g., data-testid='yield-slider', data-testid='export-csv-btn')."
+  },
+  "icons_and_assets": {
+    "library": "@phosphor-icons/react",
+    "style": "Regular or Bold weight, technical/sharp feel.",
+    "media": {
+      "image_urls": [],
+      "note": "No images required for this financial terminal application."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Run 'yarn add @phosphor-icons/react' to install the required icon library.",
+    "Update index.css to enforce '--radius: 0' and absolute black '--background: 0 0% 0%'. Adjust standard Shadcn variables to match the terminal look.",
+    "Import 'IBM Plex Sans' and 'JetBrains Mono' from Google Fonts in index.html or index.css.",
+    "When building Shadcn components (Table, Select, Slider, Input, Button), modify their root classes to remove 'rounded-md' and replace with 'rounded-none'.",
+    "For the Yield Curve Chart, use 'react-apexcharts'. Ensure it auto-refreshes every 60s via a useEffect interval.",
+    "For the Bond Screener, create mock data arrays. Implement client-side sorting and pagination.",
+    "Use pure green (text-[#00FF00]) and pure red (text-[#FF0000]) only for value changes (up/down). Avoid using them for arbitrary layout elements.",
+    "Ensure the Live EST Clock in the navigation updates every second.",
+    "File extensions MUST be .js or .jsx, do not generate .tsx files."
+  ]
+}

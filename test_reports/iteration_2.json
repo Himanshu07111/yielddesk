@@ -1,0 +1,38 @@
+{
+  "summary": "Full E2E re-test after 3 improvements (FRED live yield curve, Bond Detail Modal w/ Framer Motion, updated color palette). Backend: 16/16 pytest passing (added assertion for new 'source' field). Live FRED data confirmed (source='live', date=2026-04-24). Frontend: LIVE DATA badge renders in teal #00d4aa, new color palette applied (body bg rgb(10,14,26) = #0a0e1a; cards #1a2035). Bond detail modal opens on row click with Framer Motion, displays all 6 metrics, sparkline (ApexCharts 3 svg paths), insight pills, and closes via X, Escape, and outside-click. All existing flows (nav, clock, filters, pagination, sort) still work.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_yielddesk_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "BondDetailModal.jsx: sparklineData uses Math.random() inside useMemo with [bond] dep — it's stable per bond open session but changes each time the modal is re-opened for the same bond. Not a bug; but a deterministic seed (e.g. based on ISIN hash) would give consistent history per bond.",
+    "BondDetailModal.jsx: `duration` is a heuristic approximation (yearsToMaturity * 0.88 - ...). Document as illustrative; not real Macaulay/Modified duration.",
+    "BondDetailModal.jsx: Escape handler is attached only while isOpen is true — good. `onClose` is a dep; if parent recreates it each render it will re-bind. Consider useCallback on parent side or useRef.",
+    "BondDetailModal.jsx: modal overlay sits inside outer motion.div (also fixed inset-0). Both act as click catchers; overlay onClick works because modal content has z-10. Confirmed working with mouse click outside modal bounds.",
+    "YieldCurve.jsx: source badge only handles 'live'/'mock' — if backend ever returns another value, nothing renders. Minor (defensive default acceptable).",
+    "server.py (prior): `@app.on_event('startup')` still deprecated — migrate to lifespan (already reported in iteration 1)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_yielddesk_api.py (added 'source' field assertion)"
+  ],
+  "success_rate": {
+    "backend": "100% (16/16)",
+    "frontend": "100% (all 3 improvements + regression verified)"
+  },
+  "test_credentials": "N/A (no auth)",
+  "seed_data_creation": "Backend auto-seeds 25 mock bonds; FRED API returns live yield curve (source='live').",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All features ship-ready. Bond detail modal testids: bond-detail-modal, modal-bond-name, modal-close-btn, modal-close-footer-btn, modal-overlay, modal-sparkline, modal-insights, modal-metric-{current-yield|price|maturity-date|time-to-maturity|coupon-rate|duration}, insight-{high-grade|near-maturity|high-yield|long-duration|investment-grade}. Yield curve: data-source-badge shows 'LIVE DATA' (teal) when FRED active else 'MOCK DATA' (orange). Note for future Playwright: overlay click with force=True centers on modal — use page.mouse.click(x,y) with coords outside the 560px centered modal to simulate outside-click.",
+  "rca of the issue": "No bugs found. Prior failed overlay-click assertion in initial run was a Playwright test artifact (force-click lands at element center = modal center) and was re-verified by clicking viewport (100,500); modal closed correctly."
+}
